@@ -20,23 +20,14 @@
 \usepackage{booktabs}
 \usepackage{setspace}
 \usepackage{hyperref}
-\usepackage{authblk}
-\usepackage[hidelinks]
 \fancyhf{} % clear all fields
 \renewcommand{\headrulewidth}{1pt}
-\usepackage{xcolor}
-\hypersetup{
-    colorlinks,
-    linkcolor={purple!60!black},
-    citecolor={blue!50!black},
-    urlcolor={blue!80!black}
-}
-\usepackage{authblk}
+\newcommand{\ndd}{2021 (In print)}
 \definecolor{bubble}{rgb}{0.99, 0.76, 0.8}
 \definecolor{bluenew}{rgb}{0.67, 0.9, 0.93}
 %\fancyhead[R]{\bfseries\sffamily\thepage}
-\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
-\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+\fancyfoot[C]{\bfseries\sffamily\thepage}
+\fancyhead[L]{\nouppercase{\bfseries\sffamily\leftmark}}
 
 \fancypagestyle{plain}{% for the chapter start pages
   \fancyhf{}% clear all fields
@@ -60,8 +51,6 @@
 \endgroup
 % -----------------------------------------------------------------
 \begin{document}
-\title{Queueing theory in healthcare}
-\author{Mina Sohrabi}
 \maketitle
 \tableofcontents
 \newpage
@@ -78,7 +67,7 @@ However, \citet{Lakshmi2013} argued that combining analytic queueing theory and 
 %In the following literature review we do only want to focus on modelling approaches published after the year 2000, partly due to the fact %for the fast paced changes of population dynamics and thus higher relatability  and also the advanced computational powers available such %that more sophisticated modelling methods have been possible. 
 \subsection{Literature review}
 In the following we first want to give an overview of articles published  published after 2000, mainly due to the fact  of the fast paced changes of the population dynamics and healthcare settings, thus higher relatability to the situation today.
-An extensive literature overview about the use of queuing models in the framework of the health care sector has been made in \citet{Lakshmi2013}.
+An extensive literature overview about the use of queuing models in the framework of the health care sector has been made in \citet{Lakshmi2013}
 \citet{Brahimi1991} and \citet{Dittus1996} came to the conclusion that in health care settings, the assumption of exponentially 
 distributed service times does not hold, but unsurprisingly, due to analytical tractability, most authors rely on full markovian models, i.e. arrivals according to a Poisson process and exponentially distributed service times. 
 Over the next subsections we give a chronological and categorized selection of queueing theory applications in the health care sector.
@@ -135,7 +124,7 @@ Ressources are not only constrained to hospital beds and doctors, but also nurse
 \citep{Vericourt2011} employ a closed queueing model with markovian arrival and service times, whereas closed indicates that no external arrivals or departures from the system can occur. They reach the conclusion that mandating predefined thresholds for nurse-to-patient ratios are sub-optimal and, instead, a dynamic staffing approach reaches a higher efficacy. 
 \citep{Bard2005} considered a model with the option to dynamically adjust, the often times weekly ahead planned, nurse schedules to be able to better adapt to unforeseeable fluctuations.
 \citet{Green2007} studied optimal staffing needs in a time-varying setting instead of the more widely studied steady-state systems. \citet{Yankovic2011} stated that adequate nursing levels are indispensable in a hospital setting, however, for determining the required staffing levels, \citet{Yankovic2011} argued against the most common policy of a minimum nurse-to-patient ratio. Instead,  \citet{Yankovic2011} set up a two-dimensional queueing system, one to model the demand for beds and one the need for nurses for the same hospital unit, whereby both are of finite capacity. Of course these systems are interrelated, since on one hand,  as nurse availability, or lack thereof, directly influences the inpatient flow in regards to e.g. discharges, and thus the bed resources. On the other hand, for a higher  bed occupancy rate,  an increase in nurse staffing levels will be required. 
-The model underlined the argumentation against a pre-defined minimum nurse-to-patient ratio, as it showed that required nursing level depends, amongst others, on unit size and the unit-wide length-of-stay and various other factors. Therefore, it needs to be determined while taking all those factors into account, hence, a deterministic ratio would be ill-advised and could lead to both understaffing as well as a costly and redundant overstaffing. 
+The model underlined the argumentation against a pre-defined minimum nurse-to-patient ratio, as it showed that required nursing level depends amongst others on unit size and the unit-wide length-of-stay and various other factors. Therefore, it needs to be determined while taking all those factors into account, hence, a deterministic ratio would be ill-advised and could lead to both understaffing as well as a costly and redundant overstaffing. 
 \citet{Tan2012} modelled a dynamic, priority queue in an ED, with time-depenedent arrival rates, whereby the arrival rates of the patients differed throughout the day, and exponentially distributed service rates. \citet{Tan2012} studied a somewhat seldom touched upon topic, they added the possibility of re-entrance to the queue, when further tests and treatments for the same patient become necessary.  Moreover, since they model was set up a priority queue, instead of  FIFO,
 they introduced three other queueing discliplines for their model, and came to the conclusion that all of them were superior to FIFO in terms of average length of stay (LOS). 
 
@@ -200,13 +189,6 @@ To calculate \(\alpha\) in this case,  \citet{Hershey1981} suggested it to be ap
 
 \\
 
- \citet{Jiang2007}  applied a decomposition method, namely a parametric decomposition, combined with approximating the waiting time by means of the first two moments, thus also relying on the mean and the squared coefficient of variation. Hence, \citep{Jiang2007} decomposed the system into separate queues, whereby the queues were either of the form \(GI/G/1\) or \(GI/G/m\), when having obtained the key performance measures for each queue separately, the applied an aggregation technique such that the measures of the system as a whole could be yield.
-However, one drawback of their modelling design was that the originally proposed approach of the two-moment parametric approximation (see \citep{Reiser1975}), even with the later extensions and improvements by \citep{Whitt1983},  \citep{Bitran2009} was only meant to be for high-traffic conditions, but in health care one needs to also evaluate the low-traffic case such that the patient does not even has to wait at all. Thus,
-\citet{Jiang2007} added the possibility to their model that certain departments are of low-traffic density by improving the approximations of \citep{WHITT2009}.
-Additional to their MOQN modelling approach, \citet{Jiang2007} also set up a simulation model for validation purposes, which was in good agreement to their queueing model both for the sequential as well as the parallel patient flow system.
-Interestingly, the results here did not show a significant general improvement when opting for a parallelized workflow regarding  patient cycle times, it only improved in case of some patient classes. 
-\\
-
  
  Another one of the few studies that we encountered surrounding this topic would be \citep{Zonderland2009} who modelled an outpatient facility, in this case a pre-anesthesia evaluation clinic (PAC) by means of  queuing theory. Over the recent decades, in general, outpatient pre-evaluations have gained more and more on importance, due to the advantages they can entail such as a reduction of surgery cancellations and a reduced length of stay, as investigated by  \citep{Klei2002}. 
   The model \citet{Zonderland2009} employed was a multi-class Open Queuing Network (OQN) Model (see e.g. \citep{Bitran1992}, \citep{Bitran2009})  by means of which they obtained indicators for the performance analysis of their PAC setting.  
@@ -231,6 +213,12 @@ Since the initial policy had a very long expected patient waiting times, and hig
 %The idea of parallelization of service tasks for reducing customer cycle time, i.e. the sum of waiting- and sojourn times, was also .
 By referring to \citep{Harper2002}, \citet{Jiang2007} justified their approach for categorizing the patients into \(k\) classes. 
 
+ \citet{Jiang2007}  applied a decomposition method, namely a parametric decomposition, combined with approximating the waiting time by means of the first two moments, thus also relying on the mean and the squared coefficient of variation. Hence, \citep{Jiang2007} decomposed the system into separate queues, whereby the queues were either of the form \(GI/G/1\) or \(GI/G/m\), when having obtained the key performance measures for each queue separately, the applied an aggregation technique such that the measures of the system as a whole could be yield.
+However, one drawback of their modelling design was that the originally proposed approach of the two-moment parametric approximation (see \citep{Reiser1975}), even with the later extensions and improvements by \citep{Whitt1983},  \citep{Bitran2009} was only meant to be for high-traffic conditions, but in health care one needs to also evaluate the low-traffic case such that the patient does not even has to wait at all. Thus,
+\citet{Jiang2007} added the possibility to their model that certain departments are of low-traffic density by improving the approximations of \citep{WHITT2009}.
+Additional to their MOQN modelling approach, \citet{Jiang2007} also set up a simulation model for validation purposes, which was in good agreement to their queueing model both for the sequential as well as the parallel patient flow system.
+Interestingly, the results here did not show a significant general improvement when opting for a parallelized workflow regarding  patient cycle times, it only improved in case of some patient classes. 
+
 
 %\citet{Franco2022} set up a queuing network for a very recent topic, namely for a COVID-19 vaccination center in Columbia. Due to Coviud-19 having been a pandemic, it was of major importance to find a very fast and effective vaccination strategy for the population once vaccines were finally available. %However, in course of doing that, governments and health care systems were naturally faced with several challenges, %as for example the vaccine availability, 
 %due to system overloading and congestion.
@@ -252,7 +240,7 @@ By referring to \citep{Harper2002}, \citet{Jiang2007} justified their approach f
 
 
 
-One could also introduce weights to \eqref{Kuiper}, such that the opposite interests of patients and the employees interests are not deemed as equal. In general, for problems of type \eqref{Kuiper}, \citet{Kuiper2015} referenced to \citep{CAYIRLI2009} and the references therein. However this setup is mostly used for a single serve queue, thus \citet{Kuiper2015} extended their model introduced in \citep{Kuiper2014} by enabling tandem queues (see e.g. \citep{Boxma1979}, \citep{Pinedo1982}). Coming back to \eqref{Kuiper} and now with an added weight factor \(\beta \in \left(0,1\right)\), the risk function in \citep{Kuiper2015} takes the following form
+One could also introduce weights to \eqref{Kuiper}, such that the opposite interests of patients and the employees interests are not deemed as equal. In general, for problems of type \eqref{Kuiper}, \citet{Kuiper2015} referenced to \citep{CAYIRLI2009} and the references therein. However this setup is mostly used for a single serve queue, thus \citet{Kuiper2015} extended their model introduced in \citep{Kuiper2014} by enabling tandem queues (see e.g. \citep{Boxma1979}, \citep{BPinedo1982}). Coming back to \eqref{Kuiper} and now with an added weight factor \(\beta \in \left(0,1\right)\), the risk function in \citep{Kuiper2015} takes the following form
 \begin{align} \label{Kuiper2} min_{t_1,\dots,t_n} R(t_1, \dots, t_n) = min_{t_1,\dots,t_n} \sum_{i=1}^{n} \left(\beta \EX \left[I_i\right] + (1-\beta) \EX \left[W_i\right] \right) \quad   \end{align}
 The goal was to balance  the "disutilities" (\citep{Kuiper2014}) of the patients as well as of the servers by the optimization of \eqref{Kuiper}. Based on the work of \citep{Kemper2014},  \citet{Kuiper2015} argued that \eqref{Kuiper} can also be rewritten by incorporating the clients' sojourn times into the model. This combined with the Lindley equation (see \citep{Lindley1952}) ultimately lead to
 \begin{align} \label{Kuiper2}
@@ -274,7 +262,7 @@ since any congestions and variations of the service time at the first server are
 %Furthermore, also the effect of the weight parameter was analyzed, whereby the outcome was that, due to the first node being a D/M/1 queue,
 %It was the goal to obtain the optimal arrival times, whereby optimal indicates that patient arrive at a manner such that both the idle time of the server(s) as well as the patients' waiting times are balanced (see \citep{Kemper2014}).
 
-\\
+
  \citet{BarLev2011} modelled a blood testing setup for detecting viruses as e.g. HIV, Hepatitis-B and Hepatitis-C. Here, it was needed for the blood samples to undergo two  phases, ELISA (antibody Enzyme Linked Immuno-Sorbent Assay) and PCR (Polymerase Chain Reaction). Samples which were not deemed as infected in the ELISA phase, were grouped and then underwent the PCR testing procedure. That course of events were required as ELISA tests are of lower sensitivity than PCR, thus, are more prone to false-negatives, however since PCR tests have the disadvantage of being rather expensive, it would not be economically feasible to test all samples by PCR right from the start. In case of the PCR testing, the workflow is as follows: If the result comes back as "clean", it indicates that all samples in this group are virus-free, however if the PCR result shows a sign of contamination, it means that at least one group item was contaminated, making it a subject to further testing procedures. The mathematical model in the case of \citep{BarLev2011} was a queuing system, which, due to the two phase testing stage, consisted of two queues in tandem with the "customers" being classified as impatient, due to the expiration date of the blood samples. Due to the above described procedure, at the first queue the arrivals were individually, but at the second in batches, for literature on queueing models with batch arrivals and applications thereof, we refer to \citep{Chaudhry1983} \citep{Reddy1998} \citep{Bansal2003} \citep{Tadj2003} \citep{CHANG2005} \citep{Reddy1998} \citep{BarLev2007} \citep{Zisgen2022}. Furthermore, "impatience" is a crucial keyword in the queueing framework, as it is pretty common for customers in a queue to be willing to abandon the system without receiving service if their waiting time exceeds a certain threshold, queues with impatience customers have thus been extensively studied, with \citep{Barrer1957} being the first to do,  for some further literature we refer to  \citep{Kok1985}, \citep{Boots1999} \citep{Wang2010}. \medskip
  Another important assumption that \citet{BarLev2011} made was that the first queue, the ELISA station, was an infinite capacity queue, with the samples being individually tested in parallel. Naturally, the assumption made here was that the arrival process at this station followed a Poisson law, and the service times to be generally distributed, resulting all together in a \(M/G/\infty\) queue. From \citep{Tocher1963} we know that the queue length of a \(M/G/\infty\) queue is Poisson distributed, furthermore, another important and well known fact is that the output process of \(M/G/\inf\) is a Poisson process (see \citep{Kleinrock1976}). Let \(p\) be the deterministic percentage of the population which was not infected with the virus in question, then each sample fails the test with probability \(p\), independently of other samples (\citep{Bellhouse2001} (?)). Hence, concerning the departure process of the items which passed the ELISA stage, if  the service times had also been markovian, then it would have been exactly Poisson. However, for the general case \citet{BarLev2011} stated that, in theory, it was of a very complicated, non-renewal form, but argued that, in practice, it would be close enough to Poisson, hence justifying their assumption.  However, due to the shelf life of blood \citep{Wu2017}, part of the samples passing the first stage had already expired when arriving at the second testing stage, nevertheless, since the expiration time of the blood samples are independent from one another,  \citet{BarLev2011} argued that the input process to the PCR station was still Poisson. Of course in reality, the number of servers for the first queue was not infinite but since it was very large, it justified the approach of \citep{BarLev2011} in regards to the approximation with the infinite capacity \(M/G/\infty\) queue. 
 As mentioned and argued before, the input or arrival process to the second queue again followed a Poisson distribution, unlike before, one had to also take the patience, i.e. time to expiration of the samples, into consideration. Let \(G_{tot}\) be a random variable denoting the overall total time of expiration of a random blood sample, thus, taking into account the sojourn time at the first testing phase, then \citep{BarLev2011} assumed the remaining patience to be i.i.d, whereby the underlying distribution is general with mean \(\frac{1}{\gamma}\). The crucial point here is that \citet{BarLev2011} took it as given that samples identifying as positive at station one, were immediately transferred, without any delay, to the subsequent station, hence, \(G_{tot}\) was the sum of the time at the first station plus the remaining patience when arriving at station 2. However, due to high complexity of assuming generally distributed patience times,  \citet{BarLev2011} mostly assumed exponentially distributed patience time throughout their calculations. The workflow of the second queue was as follows: The batches of blood samples were handled by \(S\) servers, however as this queue operates on an N-policy \citep{Hur1999}, even if a server had been free, it would have only started the PCR testing if at least \( k \leq K\) items were already awaiting to be tested. Thus, the server at the second station operated under a \(M/G^{[k,K]}/S+G\) policy. Due to the N-policy the decision makers are confronted with a trade-off in the system, the higher \(S\), the faster the batches can be handled, ultimately decreasing the number of expired samples, but on the other side the operating costs of course increase. However, to calculate the queue length distribution in their analysis \citet{BarLev2011} simplified the mathematical complex \(M/G^{[k,K]}/S+G\) to an analytically tractable \(M/M^{[k,K]}/1+M\), so having only one server, exponentially distributed service times and exponential patience and case distinctions for the sizes of \(k\) and \(K\).
